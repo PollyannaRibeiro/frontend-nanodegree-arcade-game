@@ -37,6 +37,31 @@ function enemyRemoved(arr){
 }
 
 
+class Player {
+    constructor(){
+        this.character = 'images/char-boy.png';
+        this.collision = 'images/collision.png';
+        this.row = Math.floor(Math.random()*(5)); 
+        this.col = 5;
+    }
+
+    update(dt){
+
+    }
+    
+    render(){
+        ctx.drawImage(Resources.get(this.character), this.rowToX(this.row), this.colToY(this.col));
+    }
+    
+    rowToX(row) {
+        return row * 101;
+    }
+    
+    colToY(col) {
+        return (col * 83) - 33;
+    }
+
+}
 
 // Now write your own player class
 // This class requires an update(), render() and
