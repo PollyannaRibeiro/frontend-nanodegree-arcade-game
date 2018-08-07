@@ -21,6 +21,23 @@ class Enemy{
 }
 
 
+const allEnemies = [];
+let eachEnemy;
+setInterval(function(){ 
+    eachEnemy = new Enemy();
+    allEnemies.push(eachEnemy); 
+    enemyRemoved(allEnemies);
+
+}, Math.floor(Math.random()*(1500-1000+1)+1000));
+
+function enemyRemoved(arr){
+    if (arr[0].x>700){
+        allEnemies.shift();
+    }
+}
+
+
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
