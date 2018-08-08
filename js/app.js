@@ -4,11 +4,14 @@ class Enemy{
         this.x = -101;
         this.col = Math.floor(Math.random()*(3-1+1)+1);
         this.speed = Math.floor(Math.random()*(400-150+1)+150);
+        this.colisionRect = new Rect(0, 0, 95, 60);
     }
 
-    
     update(dt) {
         this.x += dt * this.speed;
+        this.colisionRect.x = this.x;
+        this.colisionRect.y = this.colToY(this.col)+80;
+
     };
 
     render() {
@@ -19,7 +22,6 @@ class Enemy{
         return (col * 83) - 33;
     }; 
 }
-
 
 const allEnemies = [];
 let eachEnemy;
@@ -43,10 +45,26 @@ class Player {
         this.collision = 'images/collision.png';
         this.row = Math.floor(Math.random()*(5)); 
         this.col = 5;
+        this.colisionRect = new Rect(0, 0, 50, 50);
     }
-
+    
     update(dt){
 
+        this.colisionRect.x = this.rowToX(this.row)+25;
+        this.colisionRect.y = this.colToY(this.col)+100;
+        
+        for (let i = 0; i<allEnemies.length; i++){
+            if (isCollided(this.colisionRect, allEnemies[i].colisionRect)){
+                lifes -= 1;
+  
+                console.log(lifes);
+                this.reset();
+                if (lifes === 0){
+                   finalScreenDefeat();
+                }  
+            }
+        }
+        
     }
     
     render(){
@@ -120,7 +138,23 @@ class Player {
 
 const player = new Player();
 
+function isCollided(a, b) {
+    return !(
+        ((a.y + a.height) < (b.y)) ||
+        (a.y > (b.y + b.height)) ||
+        ((a.x + a.width) < b.x) ||
+        (a.x > (b.x + b.width))
+    );
+}
 
+class Rect {
+    constructor(x, y, width, height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+}
 
 document.addEventListener('keyup', function(e) {
     const allowedKeys = {
