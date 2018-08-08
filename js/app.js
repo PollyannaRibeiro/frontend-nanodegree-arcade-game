@@ -38,6 +38,15 @@ function enemyRemoved(arr){
     }
 }
 
+class Rect {
+    constructor(x, y, width, height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+}
+
 let lifes = 3;
 
 class Player {
@@ -146,15 +155,6 @@ function isCollided(a, b) {
         ((a.x + a.width) < b.x) ||
         (a.x > (b.x + b.width))
     );
-}
-
-class Rect {
-    constructor(x, y, width, height){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-    }
 }
 
 document.addEventListener('keyup', function(e) {
