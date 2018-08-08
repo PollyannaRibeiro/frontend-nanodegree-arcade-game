@@ -38,6 +38,7 @@ function enemyRemoved(arr){
     }
 }
 
+let lifes = 3;
 
 class Player {
     constructor(){
