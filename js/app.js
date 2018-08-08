@@ -61,29 +61,69 @@ class Player {
         return (col * 83) - 33;
     }
 
+    handleInput(key){
+        switch (key) {
+            case 'right': { 
+                if (this.row>3){
+                    break;
+                }
+                this.row +=1;
+                break;
+            } 
+            case 'left': {
+                if (this.row<1){
+                    break;
+                }
+                this.row -=1;
+                break;
+            }
+            case 'up':{
+                if(this.col<1){
+                    break;
+                }
+                this.col-=1;
+                break;
+            }
+            case 'down':{
+                if(this.col>4){
+                    break;
+                }
+                this.col +=1;
+                break;
+            }    
+        }
+
+        this.score(); 
+    }
+    
+    reset(){
+        this.row = Math.floor(Math.random()*(5)); 
+        this.col = 5;
+    }
+    
+    score(){
+        const player = this;
+        if(this.col === 0){
+            console.log("ponto");
+            setTimeout(function(){
+                finalScreenWon();
+                // player.reset();
+                
+            }, 100);   
+        }
+    }
+
+    changeCharacterer(characterer){
+        this.character = characterer;
+    }
 }
 
 const player = new Player();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
+    const allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
