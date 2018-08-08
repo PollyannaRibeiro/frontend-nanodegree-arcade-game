@@ -1,3 +1,25 @@
 body {
     text-align: center;
 }
+
+.screen{
+
+    background: white;
+    width: 505px;
+    height: 606px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 2em;
+    margin: auto;
+    padding: auto;
+    position: relative;
+}
+
+.characteres{
+    cursor: pointer;
+}
+
+canvas{
+    margin-top: -656px;
+
+}
