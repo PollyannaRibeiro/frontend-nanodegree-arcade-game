@@ -37,7 +37,6 @@ function selectingCharacter(){
             
             definedCharacter[i].setAttribute('id', 'the-chosen-one');
             const selected = definedCharacter[i].getAttribute("src");
-            console.log(selected)  
 
             container.removeChild(document.querySelector('.screen'));
             player.changeCharacterer(selected);

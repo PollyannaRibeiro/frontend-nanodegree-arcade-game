@@ -66,8 +66,6 @@ class Player {
         for (let i = 0; i<allEnemies.length; i++){
             if (isCollided(this.colisionRect, allEnemies[i].colisionRect)){
                 lifes -= 1;
-  
-                console.log(lifes);
                 this.reset();
                 if (lifes === 0){
                    finalScreenDefeat();
@@ -132,7 +130,6 @@ class Player {
     score(){
         const player = this;
         if(this.col === 0){
-            console.log("ponto");
             setTimeout(function(){
                 finalScreenWon();
                 // player.reset();
