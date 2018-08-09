@@ -1,9 +1,16 @@
+// global variables
+const allEnemies = [];
+let eachEnemy;
+let lives = 3;
+
+// creating enemies
+
 class Enemy{
     constructor(){
         this.sprite = 'images/enemy-bug.png';
         this.x = -101;
-        this.col = Math.floor(Math.random()*(3-1+1)+1);
-        this.speed = Math.floor(Math.random()*(400-150+1)+150);
+        this.col = Math.floor(Math.random()*(3-1+1)+1); // randomising position
+        this.speed = Math.floor(Math.random()*(400-150+1)+150); // randomising the speed
         this.colisionRect = new Rect(0, 0, 95, 60);
     }
 
@@ -11,7 +18,6 @@ class Enemy{
         this.x += dt * this.speed;
         this.colisionRect.x = this.x;
         this.colisionRect.y = this.colToY(this.col)+80;
-
     };
 
     render() {
@@ -23,20 +29,21 @@ class Enemy{
     }; 
 }
 
-const allEnemies = [];
-let eachEnemy;
 setInterval(function(){ 
     eachEnemy = new Enemy();
     allEnemies.push(eachEnemy); 
     enemyRemoved(allEnemies);
 
-}, Math.floor(Math.random()*(1500-1000+1)+1000));
+}, Math.floor(Math.random()*(1500-1000+1)+1000)); // randomising the time that these enemies will be shown
 
+// removing enemies that have already passed on the screen
 function enemyRemoved(arr){
     if (arr[0].x>700){
         allEnemies.shift();
     }
 }
+
+// verifying collision
 
 class Rect {
     constructor(x, y, width, height){
@@ -47,7 +54,16 @@ class Rect {
     }
 }
 
-let lifes = 3;
+function isCollided(a, b) {
+    return !(
+        ((a.y + a.height) < (b.y)) ||
+        (a.y > (b.y + b.height)) ||
+        ((a.x + a.width) < b.x) ||
+        (a.x > (b.x + b.width))
+    );
+}
+
+// creating player
 
 class Player {
     constructor(){
@@ -65,14 +81,13 @@ class Player {
         
         for (let i = 0; i<allEnemies.length; i++){
             if (isCollided(this.colisionRect, allEnemies[i].colisionRect)){
-                lifes -= 1;
+                lives -= 1;
                 this.reset();
-                if (lifes === 0){
+                if (lives === 0){
                    finalScreenDefeat();
                 }  
             }
-        }
-        
+        } 
     }
     
     render(){
@@ -118,7 +133,6 @@ class Player {
                 break;
             }    
         }
-
         this.score(); 
     }
     
@@ -145,14 +159,7 @@ class Player {
 
 const player = new Player();
 
-function isCollided(a, b) {
-    return !(
-        ((a.y + a.height) < (b.y)) ||
-        (a.y > (b.y + b.height)) ||
-        ((a.x + a.width) < b.x) ||
-        (a.x > (b.x + b.width))
-    );
-}
+// keyboard moves
 
 document.addEventListener('keyup', function(e) {
     const allowedKeys = {

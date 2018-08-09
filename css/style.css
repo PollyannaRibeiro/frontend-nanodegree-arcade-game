@@ -2,8 +2,27 @@ body {
     text-align: center;
 }
 
-.screen{
+canvas{
+    margin-top: -656px;
+}
 
+h1{
+    font-size: 1em;
+    padding-top: 2em;
+}
+
+
+p{
+    font-size: 0.7em;
+}
+
+p#result {
+    font-size: 1em;
+    padding-top: 3em;
+}
+
+/* inicial and final screen */
+.screen{
     background: white;
     width: 505px;
     height: 606px;
@@ -19,7 +38,3 @@ body {
     cursor: pointer;
 }
 
-canvas{
-    margin-top: -656px;
-
-}
