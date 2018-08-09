@@ -85,8 +85,15 @@ class Player {
         
         for (let i = 0; i<allEnemies.length; i++){
             if (isCollided(this.colisionRect, allEnemies[i].colisionRect)){
+                // ctx.drawImage(Resources.get(this.collision), this.colisionRect.x, this.colisionRect.y);  >>>  working on that
+                // console.log(this.collision);
                 lives -= 1;
-                lifeInfo.textContent = `${lives} lives`;
+                if (lives === 1){
+                    lifeInfo.textContent = `${lives} life`;
+                } else {
+                    lifeInfo.textContent = `${lives} lives`;
+                }
+                
                 this.reset();
                 if (lives === 0){
                    finalScreenDefeat();
