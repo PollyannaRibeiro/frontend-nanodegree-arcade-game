@@ -44,6 +44,7 @@ function selectingCharacter(){
             container.removeChild(document.querySelector('.screen'));
             player.changeCharacterer(selected);
             document.querySelector('canvas').style.marginTop= '-50px';
+            document.querySelector( 'h2' ).style.display = 'block';
         });
     }
 }

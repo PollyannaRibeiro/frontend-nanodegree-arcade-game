@@ -3,6 +3,10 @@ const allEnemies = [];
 let eachEnemy;
 let lives = 3;
 
+const lifeInfo = document.createElement('h2');
+lifeInfo.textContent = `${lives} lives`;
+container.appendChild(lifeInfo);
+
 // creating enemies
 
 class Enemy{
@@ -82,6 +86,7 @@ class Player {
         for (let i = 0; i<allEnemies.length; i++){
             if (isCollided(this.colisionRect, allEnemies[i].colisionRect)){
                 lives -= 1;
+                lifeInfo.textContent = `${lives} lives`;
                 this.reset();
                 if (lives === 0){
                    finalScreenDefeat();
